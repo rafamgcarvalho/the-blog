@@ -4,13 +4,8 @@ type SpinLoaderProps = {
   className?: string;
 }
 
-export function SpinLoader({className}: SpinLoaderProps) {
-  const classes = clsx(
-    'flex',
-    'items-center',
-    'justify-center',
-    className
-  );
+export function SpinLoader({ className = '' }: SpinLoaderProps) {
+  const classes = clsx('flex', 'items-center', 'justify-center', className);
 
   return (
     <div className={classes}>

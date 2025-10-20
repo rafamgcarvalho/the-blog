@@ -19,8 +19,7 @@ export async function PostsList() {
               width: 1200,
               height: 720,
               src: post.coverImageUrl,
-              alt: "Titulo",
-              priority: true,
+              alt: post.title,
             }}
           ></PostCoverImage>
 

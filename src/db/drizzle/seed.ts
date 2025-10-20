@@ -12,6 +12,6 @@ import { postsTable } from "./schemas";
 
     console.log(`${posts.length} posts foram salvos na base de dados.`)
   } catch(e) {
-    console.log("Ocorreu um erro")
+    console.log("Ocorreu um erro", e)
   }
 })();

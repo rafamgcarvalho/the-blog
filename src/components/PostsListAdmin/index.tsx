@@ -1,34 +1,28 @@
+import { deletePostAction } from "@/actions/post/delete-post-action";
 import { findAllPostAdmin } from "@/lib/post/queries/admin";
 import clsx from "clsx";
-import { Trash2Icon } from "lucide-react";
 import Link from "next/link";
+import { DeletePostButton } from "../admin/DeletePostButton";
 
 export default async function PostsListAdmin() {
   const posts = await findAllPostAdmin();
 
   return (
-  <div className = "mb-16" >
-  {posts.map(post => {
-      return (
-        <div className={clsx("py-2 p-2", !post.published && "bg-slate-300", "flex gap-2 items-center justify-between")} key={post.id}>
+    <div className="mb-16" >
+      {posts.map(post => {
+        return (
+          <div className={clsx("py-2 p-2", !post.published && "bg-slate-300", "flex gap-2 items-center justify-between")} key={post.id}>
 
-          <Link href={`/admin/post/${post.id}`}> {post.title} </Link>
+            <Link href={`/admin/post/${post.id}`}> {post.title} </Link>
 
-          {!post.published && <span className="text-xs text-slate-600 italic">(Não publicado)</span>}
+            {!post.published && <span className="text-xs text-slate-600 italic">(Não publicado)</span>}
 
-          <button className={clsx(
-            "text-red-500 cursor-pointer transition",
-            "[&_svg]:h-4 [&_svg]:w-4",
-            "hover:scale-120",
-            )}
-            aria-label={`Apagar post: ${post.title}`}
-            title={`Apagar post: ${post.title}`}
-
-            >
-            <Trash2Icon />
-          </button>
-        </div>)
-    })}
-  </div >
+            <form action={deletePostAction}>
+              <input type="hidden" name="id" defaultValue={post.id}/>
+              <DeletePostButton id={post.id} title={post.title} />
+            </form>
+          </div>)
+      })}
+    </div >
   );
 }

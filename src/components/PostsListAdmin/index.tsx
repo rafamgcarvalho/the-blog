@@ -1,4 +1,3 @@
-import { deletePostAction } from "@/actions/post/delete-post-action";
 import { findAllPostAdmin } from "@/lib/post/queries/admin";
 import clsx from "clsx";
 import Link from "next/link";
@@ -17,10 +16,7 @@ export default async function PostsListAdmin() {
 
             {!post.published && <span className="text-xs text-slate-600 italic">(Não publicado)</span>}
 
-            <form action={deletePostAction}>
-              <input type="hidden" name="id" defaultValue={post.id}/>
-              <DeletePostButton id={post.id} title={post.title} />
-            </form>
+            <DeletePostButton id={post.id} title={post.title} />
           </div>)
       })}
     </div >

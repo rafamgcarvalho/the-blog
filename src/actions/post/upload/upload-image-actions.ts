@@ -1,6 +1,7 @@
 "use server";
 
 import { IMAGE_SERVER_URL, IMAGE_UPLOAD_DIRECTORY, IMAGE_UPLOADER_MAX_SIZE } from "@/lib/constants";
+import { asyncDelay } from "@/utils/async-delay";
 import { mkdir, writeFile } from "fs/promises";
 import { extname, resolve } from "path";
 
@@ -10,6 +11,8 @@ type UploadImageActionResult = {
 }
 
 export async function uploadImageAction(formData: FormData): Promise<UploadImageActionResult> {
+  await asyncDelay(5000, true);
+
   const makeResult = ({url = "", error = ""}) => {
     return {url, error}
   }
@@ -46,6 +49,6 @@ export async function uploadImageAction(formData: FormData): Promise<UploadImage
   await writeFile(fileFullPath, buffer);
 
   const url = `${IMAGE_SERVER_URL}/${uniqueImageName}`;
-  
+
   return makeResult({ url });
 }

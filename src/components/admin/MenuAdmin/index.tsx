@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-
 "use client";
 
 import clsx from "clsx";
@@ -52,7 +50,7 @@ export function MenuAdmin() {
         )}
       </button>
 
-      <a className={LinkClasses} href="/" target="blank">
+      <a className={LinkClasses} href="/" target="_blank">
         <HouseIcon />
         Home
       </a>
@@ -62,7 +60,7 @@ export function MenuAdmin() {
         Posts
       </Link>
 
-      <Link className={LinkClasses} href="/admin/post">
+      <Link className={LinkClasses} href="/admin/post/new">
         <PlusIcon />
         Criar post
       </Link>

@@ -13,27 +13,72 @@ export function ManagePostForm() {
   return (
     <form action="" className="mb-16">
       <div className="flex flex-col gap-6">
-        <InputText labelText="Nome" placeholder="Digite seu nome" />
 
-        <ImageUploader></ImageUploader>
+        <InputText
+          labelText="ID"
+          name="id"
+          placeholder="ID gerado automaticamente"
+          type="text"
+          defaultValue={""}
+          readOnly
+        />
 
-        <InputText labelText="Sobrenome" placeholder="Digite seu sobrenome" />
-        <InputText disabled labelText="Nome" placeholder="Digite seu nome" />
+        <InputText
+          labelText="Slug"
+          name="slug"
+          placeholder="Slug gerada automaticamente"
+          type="text"
+          defaultValue={""}
+          readOnly
+        />
 
-        <InputCheckbox labelText="Sobrenome"></InputCheckbox>
+        <InputText
+          labelText="Autor"
+          name="author"
+          placeholder="Digite o nome do autor"
+          type="text"
+          defaultValue={""}
+        />
+
+        <InputText
+          labelText="Título"
+          name="title"
+          placeholder="Digite o título"
+          type="text"
+          defaultValue={""}
+        />
+
+        <InputText
+          labelText="Excerto"
+          name="excerpt"
+          placeholder="Digite o resumo"
+          type="text"
+          defaultValue={""}
+        />
 
         <MarkdownEditor
           labelText="Conteúdo"
-          disabled={false}
-          textAreaName="content"
           value={contentValue}
           setValue={setContentValue}
-        >
-        </MarkdownEditor>
+          textAreaName="content"
+          disabled={false}
+        />
 
-        <InputText labelText="Nome" placeholder="Digite seu nome" />
-        <InputText labelText="Nome" placeholder="Digite seu nome" />
-        <InputText labelText="Nome" placeholder="Digite seu nome" />
+        <ImageUploader />
+
+        <InputText
+          labelText="URL da imagem de capa"
+          name="coverImageUrl"
+          placeholder="Digite a url da imagem"
+          type="text"
+          defaultValue={""}
+        />
+
+        <InputCheckbox
+          labelText="Publicar?"
+          name="published"
+          type="checkbox"
+        />
 
         <div className="mt-4">
           <Button type="submit">

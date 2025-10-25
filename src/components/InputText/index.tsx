@@ -5,7 +5,7 @@ type InputTextProps = {
   labelText?: string;
 } & React.ComponentProps<"input">
 
-export function InputText({ labelText, ...props }: InputTextProps) {
+export function InputText({ labelText = "", ...props }: InputTextProps) {
   const id = useId();
 
   return (

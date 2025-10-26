@@ -35,7 +35,7 @@ export class DrizzlePostRepository implements PostRepository {
     async findAll(): Promise<PostModel[]> {
       await asyncDelay(SIMULATE_WAIT_IN_MS, true);
 
-      logColor("findAll", Date.now());
+      // logColor("findAll", Date.now());
 
       const posts = await drizzleDb.query.posts.findMany({
         orderBy: (posts, {desc}) => desc(posts.createdAt),
@@ -46,7 +46,7 @@ export class DrizzlePostRepository implements PostRepository {
 
     async findById(id: string): Promise<PostModel> {
       await asyncDelay(SIMULATE_WAIT_IN_MS, true);
-      
+
       logColor("findById", Date.now());
 
       const post = await drizzleDb.query.posts.findFirst({

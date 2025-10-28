@@ -1,16 +1,15 @@
 import { PostModel } from "@/models/post/post-model";
 import { PostRepository } from "./post-repository";
 import { drizzleDb } from "@/db/drizzle";
-import { logColor } from "@/utils/log-color";
 import { asyncDelay } from "@/utils/async-delay";
-import { SIMULATE_WAIT_IN_MS } from "@/lib/constants";
 import { postsTable } from "@/db/drizzle/schemas";
 import { eq } from "drizzle-orm";
 
+const simulateWaitMs = Number(process.env.SIMULATE_WAIT_IN_MD) || 0;
+
 export class DrizzlePostRepository implements PostRepository {
   async findAllPublic(): Promise<PostModel[]> {
-    await asyncDelay(SIMULATE_WAIT_IN_MS, true);
-    logColor("findAllPublic", Date.now());
+    await asyncDelay(simulateWaitMs, true);
 
     const posts = await drizzleDb.query.posts.findMany({
       orderBy: (posts, { desc }) => desc(posts.createdAt),
@@ -21,9 +20,7 @@ export class DrizzlePostRepository implements PostRepository {
   }
 
   async findBySlugPublic(slug: string): Promise<PostModel> {
-    await asyncDelay(SIMULATE_WAIT_IN_MS, true);
-
-    logColor("findBySlugPublic", Date.now());
+    await asyncDelay(simulateWaitMs, true);
 
     const post = await drizzleDb.query.posts.findFirst({
       where: (posts, { eq, and }) => and(eq(posts.published, true), eq(posts.slug, slug)),
@@ -35,9 +32,7 @@ export class DrizzlePostRepository implements PostRepository {
   }
 
   async findAll(): Promise<PostModel[]> {
-    await asyncDelay(SIMULATE_WAIT_IN_MS, true);
-
-    // logColor("findAll", Date.now());
+    await asyncDelay(simulateWaitMs, true);
 
     const posts = await drizzleDb.query.posts.findMany({
       orderBy: (posts, { desc }) => desc(posts.createdAt),
@@ -47,9 +42,7 @@ export class DrizzlePostRepository implements PostRepository {
   }
 
   async findById(id: string): Promise<PostModel> {
-    await asyncDelay(SIMULATE_WAIT_IN_MS, true);
-
-    logColor("findById", Date.now());
+    await asyncDelay(simulateWaitMs, true);
 
     const post = await drizzleDb.query.posts.findFirst({
       where: (posts, { eq }) => eq(posts.id, id),
@@ -122,10 +115,3 @@ export class DrizzlePostRepository implements PostRepository {
     };
   }
 }
-
-// (async () => {
-//   const repo = new DrizzlePostRepository();
-//   const post = await repo.findById("99f8add4-7684-4c16-a316-616271db199e");
-
-//   console.log(post)
-// })()

@@ -54,25 +54,41 @@ the-blog/
 
 ## 🧑‍💻 Como executar o projeto
 
-Clone o repositório:
+**Clone o repositório:**
 ```bash
 git clone https://github.com/rafamgcarvalho/the-blog.git
 cd the-blog
 ```
 
-Instale as dependências:
+**Instale as dependências:**
 
 ```bash
 npm install
 ```
 
-Inicie o servidor de desenvolvimento:
+**Configurar o arquivo .env.local:**
+
+Crie um arquivo .env.local na raiz do projeto e copie o conteúdo de .env.local-example.
+
+**Rodar as migrações:**
+
+```bash
+npm run migrate
+```
+
+**Executar seed (opcional):**
+
+```bash
+npm run seed
+```
+
+**Inicie o servidor de desenvolvimento:**
 
 ```bash
 npm run dev
 ```
 
-O projeto estará disponível em:
+**O projeto estará disponível em:**
 
 ```arduino
 http://localhost:3000
